@@ -1,0 +1,50 @@
+  <!-- Header  -->
+  <div class="my-auto">
+    <div class="row d-flex justify-content-center mt-2 animated fadeIn">
+      <p class="h1">Facturas Resientes</p>
+    </div>
+    <!-- Header  -->
+
+    <!-- filtros -->
+    <div class="row d-flex mt-3">
+
+        <!-- date time picker component -->
+        <form #myForm="ngForm" novalidate class="col-6">
+             <input type="date"  [(ngModel)]="desde" name="desde">
+      </form>
+
+      <form #myForm="ngForm" novalidate class="col-6">
+        <input type="date"  [(ngModel)]="hasta" name="hasta">
+    </form>
+
+    </div>
+
+<div class="row mt-3">
+  <button   class="btn btn-danger" (click)="ver()">Ver Fecha en consola</button>
+</div>
+
+
+  <!-- filtros -->
+
+    <!-- tabla de clientes -->
+    <div class="row card animated fadeIn mt-3" id="agenda">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Empresa</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- aplicando el pipe al ng-fo -->
+          <tr *ngFor="let factura of facturas |filtroFecha:desde :hasta">
+            <td>{{factura.empresa}}</td>
+            <td>{{factura.monto | currency}}</td>
+            <td>{{factura.estado}}</td>
+            <td>{{factura.fecha | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+   <!-- tabla de clientes -->
